@@ -15,11 +15,13 @@ Within the terminal, please run the following command
 otree devserver
 ```
 
+Upon running the above command, the following message should appear,
 ```bash
-The following message should appear,
 Open your browser to http://localhost:8000/
 To quit the server, press Control+C.
 ``` 
+
+Please click the link to begin the oTree experiment.
 
 ## License
 
