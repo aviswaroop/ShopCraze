@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "ShopCraze"
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Limaye"
+  given-names: "Anannya"
+- family-names: "Sistla"
+  given-names: "Abhinav Viswaroop"
+type: software
+date-released: 2024-02-03
+url: "https://github.com/aviswaroop/ShopCraze"
+license: GPL-3.0
