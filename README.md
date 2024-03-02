@@ -25,4 +25,4 @@ Please click the link to begin the oTree experiment.
 
 ## License
 
-[GPL 3.0]([https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/gpl-3.0/))
+[GPL 3.0](https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/gpl-3.0/)
