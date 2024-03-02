@@ -1,0 +1,344 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block content %}
+<!-- Write content in here -->
+  <!--Main Navigation-->
+  <head>
+    <!-- Bootstrap 4.1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts : Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <header>
+    <!-- Jumbotron -->
+    <div class="p-3 text-center bg-white border-bottom">
+      <div class="container">
+        <div class="row gy-3">
+          <!-- Left elements -->
+          <div class="col-lg-2 col-sm-4 col-4">
+            <a href="" target="_self" class="float-start">
+              <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/Shopcraze.png" width="125"/>
+            </a>
+          </div>
+          <!-- Left elements -->
+
+          <!-- Center elements -->
+          <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+            <div class="d-flex float-end">
+              <a href="#" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_self">
+                <i class="fas fa-user-alt m-1 me-md-2"></i>
+                <p class="d-none d-md-block mb-0">Account</p>
+              </a>
+              <a href="#" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_self">
+                <i class="fas fa-heart m-1 me-md-2"></i>
+                <p class="d-none d-md-block mb-0">Wishlist</p>
+              </a>
+              <a href="#" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_self">
+                <i class="fas fa-wallet m-1 me-md-2"></i>
+                <p class="d-none d-md-block mb-0" style="font-size:18px">₹{{ player.cash }}</p>
+              </a>
+            </div>
+          </div>
+          <!-- Center elements -->
+
+          <!-- Right elements -->
+          <div class="col-lg-5 col-md-12 col-12">
+            <div class="input-group float-center">
+              <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+                <label class="form-label" for="form1">Search</label>
+              </div>
+              <button type="button" class="btn btn-primary shadow-0"  style="background-color:#9ae3f1;">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Right elements -->
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+
+    <!-- Heading -->
+    <div class="card" style="background-color:#053262;">
+      <div class="card-body">
+        <div class="card-body">
+        <!-- Breadcrumb -->
+        <nav class="d-flex mb-2">
+          <h6 class="mb-0">
+            <a href="" class="text-white-50">Home</a>
+            <span class="text-white-50 mx-2"> > </span>
+            <a href="" class="text-white-50">Categories</a>
+            <span class="text-white-50 mx-2"> > </span>
+            <a href="" class="text-white"><u>Travel</u></a>
+          </h6>
+        </nav>
+        <!-- Breadcrumb -->
+      </div>
+    </div>
+    <!-- Heading -->
+  </header>
+
+  <!-- sidebar + content -->
+  <section class="">
+    <div class="container">
+      <div class="row">
+
+        <!-- content -->
+        <div class="col-lg-12">
+          <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
+            <strong class="d-block py-2">3 Items found </strong>
+            <div class="ms-auto">
+              <select class="form-select d-inline-block w-auto border pt-1">
+                <option value="0">Best match</option>
+                <option value="1">Recommended</option>
+                <option value="2">High rated</option>
+                <option value="3">Randomly</option>
+              </select>
+              <div class="btn-group shadow-0 border">
+                <a href="#" class="btn btn-light" title="List view">
+                  <i class="fa fa-bars fa-lg"></i>
+                </a>
+                <a href="#" class="btn btn-light active" title="Grid view">
+                  <i class="fa fa-th fa-lg"></i>
+                </a>
+              </div>
+            </div>
+          </header>
+
+
+
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
+              <div class="card w-100 my-2 shadow-2-strong">
+                <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/product1r2.jpg" class="card-img-top" />
+                <div class="card-body d-flex flex-column">
+                  <div class="mask px-2" style="height: 50px;">
+                    <div class="d-flex justify-content-between">
+                      <h6 style="font-size: 19px"><span class="badge bg-danger pt-1 mt-3 ms-4">Today's Deal: Up to 20% off</span></h6>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row">
+                    <h5 class="mb-1 me-1">₹289</h5>
+                  </div>
+                  <p class="card-text">Travel Neck Pillow Rest Cushion with 5 Years Warranty for Travel and Sleeping in Plane Flight Car Train Airplane for Sleeping for Men and Women</p>
+                  <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                    <button type="submit" id="product1" value="product1" class="btn btn-primary shadow-0 me-1"  style="background-color:#fcae08;" onclick="buyProduct('product1')">Add to cart</button>
+                    <input type="hidden" name="product" id="product" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
+              <div class="card w-100 my-2 shadow-2-strong">
+                <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/product2r2.jpg" class="card-img-top" />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">₹210.88</h5>
+                  <p class="card-text">Travel Neck Pillow, Unisex, Multipurpose, U-Shaped, Poly Fill;Velvet</p>
+                  <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                    <button id="product2" type="submit" value="product2" class="btn btn-primary shadow-0 me-1" style="background-color:#fcae08;" onclick="buyProduct('product2')">Add to cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
+              <div class="card w-100 my-2 shadow-2-strong">
+                <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/product3r2.jpg" class="card-img-top"/>
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">₹188</h5>
+                  <p class="card-text">Neck Pillow for Travelling Airplane Travel Pillow Comfortable Head Rest Neck Holder Pillow</p>
+                  <label class="form-check-label" for="flexCheckDefault">
+                      <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+                      <i class="fas fa-star text-secondary"></i>
+                  </label>
+                  <p><span class="text-danger"><i>Recommended by 51 users</i></span></p>
+                  <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                    <button type="submit" id="product3" value="product3" class="btn btn-primary shadow-0 me-1"  style="background-color:#fcae08;" onclick="buyProduct('product3')">Add to cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          {{ formfield_errors 'product' }}
+
+          <!-- Pagination -->
+          <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#" style="background-color:#9ae3f1;">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- Pagination -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- sidebar + content -->
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start text-muted bg-primary mt-3" >
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start pt-4 pb-4" style="background-color:#053262;">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-12 col-lg-3 col-sm-12 mb-2">
+            <!-- Content -->
+            <a href="" target="_self" class="text-white h2">
+              <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/Shopcraze.png" width="125"/>
+            </a>
+            <p class="mt-1 text-white">
+              © 2024 Copyright: ShopCraze.com
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Store
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">About us</a></li>
+              <li><a class="text-white-50" href="#">Leadership</a></li>
+              <li><a class="text-white-50" href="#">Investors</a></li>
+              <li><a class="text-white-50" href="#">Sustainability</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Information
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Account</a></li>
+              <li><a class="text-white-50" href="#">Order Tracking</a></li>
+              <li><a class="text-white-50" href="#">Shipping</a></li>
+              <li><a class="text-white-50" href="#">Affiliate</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Support
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Help Center</a></li>
+              <li><a class="text-white-50" href="#">FAQs</a></li>
+              <li><a class="text-white-50" href="#">Refunds</a></li>
+              <li><a class="text-white-50" href="#">Grievances</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  </footer>
+  <!-- Footer -->
+
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Write scripts in here! -->
+<script type="text/javascript">
+  import { Modal, Ripple, initMDB } from "mdb-ui-kit";
+  initMDB({ Modal, Ripple });
+</script>
+<!-- Load javascripts from Content Delivery Network -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=1024, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Make sure a warning apears when someone tries to refresh or leave the session-->
+<body onkeydown="return (event.keyCode != 116)"></body>
+<body onkeydown="return (event.keyCode != 8)"></body>
+<body onkeydown="return (event.keyCode != 123)"></body>
+<body onkeydown="return (event.keyCode != 154)"></body>
+
+<!-- Load custom javascripts from static files -->
+{% endblock %}
+
+{% block scripts %}
+<!-- Write scripts in here! -->
+<!-- Product choice -->
+<script type="text/javascript">
+  function buyProduct(element){
+    if (document.getElementById(element).value == 'product1')
+      {result = document.getElementById('product1').value;}
+    else if (document.getElementById(element).value == 'product2')
+      {result = document.getElementById('product2').value;}
+    else if (document.getElementById(element).value == 'product3')
+      {result = document.getElementById('product3').value;}
+    document.getElementById('product').value = result;
+  }
+</script>
+<!-- MDB -->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
+></script>
+
+<!-- popover script -->
+<script>
+  $('.popover-dismiss').popover({
+  trigger: 'focus'
+})
+</script>
+
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Load custom javascripts from static files -->
+<style src="{% static "ShopCraze/style.css" %}"></style>
+{% endblock %}

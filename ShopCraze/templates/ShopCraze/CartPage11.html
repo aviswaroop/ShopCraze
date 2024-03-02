@@ -1,0 +1,397 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block content %}
+  <head>
+      <!-- Font Awesome -->
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+      />
+      <!-- Google Fonts : Noto Sans -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <!-- MDB -->
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+        rel="stylesheet"
+      />
+    </head>
+
+  <header>
+    <!-- Jumbotron -->
+    <div class="p-3 text-center bg-white border-bottom">
+      <div class="container">
+        <div class="row gy-3">
+          <!-- Left elements -->
+          <div class="col-lg-2 col-sm-4 col-4">
+            <a href="" target="_blank" class="float-start">
+              <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/Shopcraze.png" width="125" />
+            </a>
+          </div>
+          <!-- Left elements -->
+
+          <!-- Center elements -->
+          <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+            <div class="d-flex float-end">
+              <a href="" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
+                <i class="fas fa-user-alt m-1 me-md-2"></i>
+                <p class="d-none d-md-block mb-0">Account</p>
+              </a>
+              <a href="" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
+                <i class="fas fa-heart m-1 me-md-2"></i>
+                <p class="d-none d-md-block mb-0">Wishlist</p>
+              </a>
+              <a href="" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
+                <i class="fas fa-wallet m-1 me-md-2"></i>
+                <p class="d-none d-md-block mb-0" style="font-size:18px">₹{{ player.cash }}</p>
+              </a>
+            </div>
+          </div>
+          <!-- Center elements -->
+
+          <!-- Right elements -->
+          <div class="col-lg-5 col-md-12 col-12">
+            <div class="input-group float-center">
+              <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+                <label class="form-label" for="form1">Search</label>
+              </div>
+              <button type="button" class="btn btn-primary shadow-0" style="background-color:#9ae3f1;">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Right elements -->
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+
+    <!-- Heading -->
+    <div class="card" style="background-color:#053262;">
+      <div class="container py-4">
+        <!-- Breadcrumb -->
+        <nav class="d-flex">
+          <h6 class="mb-0">
+            <a href="" class="text-white-50">Home</a>
+            <span class="text-white-50 mx-2"> > </span>
+            <a href="" class="text-white"><u>Shopping cart</u></a>
+          </h6>
+        </nav>
+        <!-- Breadcrumb -->
+      </div>
+    </div>
+    <!-- Heading -->
+  </header>
+
+  <!-- cart + summary -->
+  <section class="bg-light my-5">
+    <div class="container">
+      <div class="row">
+        <!-- cart -->
+        <div class="col-lg-9">
+          <div class="card border shadow-0">
+            <div class="m-4">
+              <h4 class="card-title mb-4">Your shopping cart</h4>
+              <div class="row gy-3 mb-4">
+                <div class="col-lg-5">
+                  <div class="me-lg-5">
+                    <div class="d-flex">
+                      <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/product1r1.jpg" class="border rounded me-3" style="width: 96px; height: 96px;" />
+                      <div class="">
+                        <a href="#" class="nav-link">10,000mAh Power Bank featuring Li-Polymer battery, Micro-USB & Type-C inputs, and 18W fast charging, in sleek Midnight Black.</a>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+                  <div class="">
+                    <text class="h6">1579</text> <br />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-top pt-4 mx-4 mb-4">
+              <p><i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within 1-2 weeks</p>
+              <p class="text-muted">
+                The products present in the cart shall be delivered to your selected address within 1-2 weeks.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- cart -->
+        <!-- summary -->
+        <div class="col-lg-3">
+          <div class="card mb-3 border shadow-0">
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label class="form-label">Have coupon?</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control border" name="" placeholder="Coupon code" />
+                    <a href="#" class="btn btn-light border">Apply</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card shadow-0 border">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <p class="mb-2">Total price:</p>
+                <p class="mb-2">₹1579</p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="mb-2">Discount:</p>
+                <p class="mb-2 text-success">-₹14</p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="mb-2">TAX:</p>
+                <p class="mb-2">₹14</p>
+              </div>
+              <hr />
+              <div class="d-flex justify-content-between">
+                <p class="mb-2">Total price:</p>
+                <p class="mb-2 fw-bold">1579</p>
+              </div>
+
+              <div class="mt-3">
+                <button type="submit" class="btn btn-success w-100 shadow-0 mb-2"> Confirm Purchase </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- summary -->
+      </div>
+    </div>
+  </section>
+  <!-- cart + summary -->
+  <section>
+    <div class="container my-5">
+      <header class="mb-4">
+        <h3>Recommended items</h3>
+      </header>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card px-4 border shadow-0 mb-4 mb-lg-0">
+            <div class="mask px-2" style="height: 50px;">
+              <div class="d-flex justify-content-between">
+                <h6><span class="badge bg-danger pt-1 mt-3 ms-2">New</span></h6>
+              </div>
+            </div>
+            <a href="#" class="">
+              <img src="https://m.media-amazon.com/images/I/61CGHv6kmWL.jpg" class="card-img-top rounded-2" />
+            </a>
+            <div class="card-body d-flex flex-column pt-3 border-top">
+              <a href="#" class="nav-link">Gaming Headset with Mic</a>
+              <div class="price-wrap mb-2">
+                <strong class="">₹1895</strong>
+                <del class="">₹2499</del>
+              </div>
+              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card px-4 border shadow-0 mb-4 mb-lg-0">
+            <div class="mask px-2" style="height: 50px;">
+            </div>
+            <a href="#" class="">
+              <img src="https://m.media-amazon.com/images/I/91z5KuonXrL._AC_UF1000,1000_QL80_.jpg" class="card-img-top rounded-2" />
+            </a>
+            <div class="card-body d-flex flex-column pt-3 border-top">
+              <a href="#" class="nav-link">Apple Watch Ultra</a>
+              <div class="price-wrap mb-2">
+                <strong class="">₹7200</strong>
+              </div>
+              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card px-4 border shadow-0">
+            <div class="mask px-2" style="height: 50px;">
+            </div>
+            <a href="#" class="">
+              <img src="https://m.media-amazon.com/images/I/81I5FTplIYL._AC_UF894,1000_QL80_.jpg" class="card-img-top rounded-2" />
+            </a>
+            <div class="card-body d-flex flex-column pt-3 border-top">
+              <a href="#" class="nav-link">Pure Cotton Bedcover in Blue Colour</a>
+              <div class="price-wrap mb-2">
+                <strong class="">₹1350</strong>
+              </div>
+              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card px-4 border shadow-0">
+            <div class="mask px-2" style="height: 50px;">
+            </div>
+            <a href="#" class="">
+              <img src="https://m.media-amazon.com/images/I/71MBUePMvQL.jpg" class="card-img-top rounded-2" />
+            </a>
+            <div class="card-body d-flex flex-column pt-3 border-top">
+              <a href="#" class="nav-link">Syska LED Cool Day Light, 1 Piece</a>
+              <div class="price-wrap mb-2">
+                <strong class="">₹262.90</strong>
+              </div>
+              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Recommended -->
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start text-muted bg-primary mt-3">
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start pt-4 pb-4" style="background-color:#053262;">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-12 col-lg-3 col-sm-12 mb-2">
+            <!-- Content -->
+            <a href="" target="_blank" class="text-white h2">
+              <img src="https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/Shopcraze.png" width="125"/>
+            </a>
+            <p class="mt-1 text-white">
+              © 2024 Copyright: ShopCraze.com
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Store
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">About us</a></li>
+              <li><a class="text-white-50" href="#">Leadership</a></li>
+              <li><a class="text-white-50" href="#">Investors</a></li>
+              <li><a class="text-white-50" href="#">Sustainability</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Information
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Account</a></li>
+              <li><a class="text-white-50" href="#">Order Tracking</a></li>
+              <li><a class="text-white-50" href="#">Shipping</a></li>
+              <li><a class="text-white-50" href="#">Affiliate</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-white fw-bold mb-2">
+              Support
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-white-50" href="#">Help center</a></li>
+              <li><a class="text-white-50" href="#">FAQs</a></li>
+              <li><a class="text-white-50" href="#">Refunds</a></li>
+              <li><a class="text-white-50" href="#">Grievances</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <div class="" style="background-color:#053262;">
+      <div class="container">
+        <div class="d-flex justify-content-between py-4 border-top">
+          <!--- payment --->
+          <div>
+            <i class="fab fa-lg fa-cc-visa text-white"></i>
+            <i class="fab fa-lg fa-cc-amex text-white"></i>
+            <i class="fab fa-lg fa-cc-mastercard text-white"></i>
+            <i class="fab fa-lg fa-cc-paypal text-white"></i>
+          </div>
+          <!--- payment --->
+
+          <!--- language selector --->
+          <div class="dropdown dropup">
+            <a class="dropdown-toggle text-white" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
+
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+              </li>
+            </ul>
+          </div>
+          <!--- language selector --->
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer -->
+
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Write scripts in here! -->
+<!-- MDB -->
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
+      ></script>
+<!-- Load custom javascripts from static files -->
+<style src="{% static "ShopCraze/style.css" %}"></style>
+<script src="{% static "ShopCraze/start_controller.js" %}"></script>
+{% endblock %}
