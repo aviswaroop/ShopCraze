@@ -1,5 +1,6 @@
 from otree.api import *
-from random import randint
+from random import randint, seed
+from datetime import datetime
 
 author = 'Abhinav Viswaroop'
 
@@ -10,18 +11,30 @@ r1_occur = False
 r2_occur = False
 r3_occur = False
 
+r1_page = 0
+r2_page = 0
+r3_page = 0
+
 class C(BaseConstants):
     NAME_IN_URL = 'ShopCraze'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 3
-    r1_page = randint(1, 4)
-    r2_page = randint(1, 4)
-    r3_page = randint(1, 4)
-    print("r1, r2, r3 : ", r1_page, ", ", r2_page, ", " ,r3_page)
 
 
 class Subsession(BaseSubsession):
     pass
+
+def creating_session(subsession: BaseSubsession):
+    global r1_page, r2_page, r3_page
+    seed(datetime.now().timestamp())
+    if subsession.round_number == 1:
+        for p in subsession.get_players():
+            participant = p.participant
+            participant.r1_page = randint(1, 4)
+            participant.r2_page = randint(1, 4)
+            participant.r3_page = randint(1, 4)
+            participant.permutation = (participant.r1_page * 100) + (participant.r2_page * 10) + participant.r3_page
+            print('permutation = ', participant.permutation)
 
 class Group(BaseGroup):
     pass
@@ -36,7 +49,10 @@ class Player(BasePlayer):
                                  label="Add to Cart",
                                  choices=['product1', 'product2', 'product3'],
                                  initial=0)
-    permutation = models.IntegerField(initial=((C.r1_page*100) + (C.r2_page*10) + C.r3_page))
+    permutation = models.IntegerField(initial=((r1_page * 100) + (r2_page * 10) + r3_page))
+    r1_page = models.IntegerField()
+    r2_page = models.IntegerField()
+    r3_page = models.IntegerField()
 
 
 # List of Pages
@@ -59,6 +75,11 @@ class LoginPage(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
 
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        pass
+
+
 # CartPages for Round 1
 class CartPage11(Page):
     @staticmethod
@@ -78,11 +99,12 @@ class CartPage121(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r1_occur is False:
+            participant = player.participant
             if (player.product == 'product2') and (player.round_number == 1):
-                if C.r1_page == 1:
+                if participant.r1_page == 1:
                     return player.round_number == 1
             elif (player.product == 'product3') and (player.round_number == 1):
-                if C.r1_page == 4:
+                if participant.r1_page == 4:
                     return player.round_number == 1
             else:
                 return 0
@@ -96,11 +118,12 @@ class CartPage122(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r1_occur is False:
+            participant = player.participant
             if (player.product == 'product2') and (player.round_number == 1):
-                if C.r1_page == 3:
+                if participant.r1_page == 3:
                     return player.round_number == 1
             elif (player.product == 'product3') and (player.round_number == 1):
-                if C.r1_page == 2:
+                if participant.r1_page == 2:
                     return player.round_number == 1
             else:
                 return 0
@@ -114,11 +137,12 @@ class CartPage131(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r1_occur is False:
+            participant = player.participant
             if (player.product == 'product3') and (player.round_number == 1):
-                if C.r1_page == 1:
+                if participant.r1_page == 1:
                     return player.round_number == 1
             elif (player.product == 'product2') and (player.round_number == 1):
-                if C.r1_page == 4:
+                if participant.r1_page == 4:
                     return player.round_number == 1
             else:
                 return 0
@@ -132,11 +156,12 @@ class CartPage132(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r1_occur is False:
+            participant = player.participant
             if (player.product == 'product3') and (player.round_number == 1):
-                if C.r1_page == 3:
+                if participant.r1_page == 3:
                     return player.round_number == 1
             elif (player.product == 'product2') and (player.round_number == 1):
-                if C.r1_page == 2:
+                if participant.r1_page == 2:
                     return player.round_number == 1
             else:
                 return 0
@@ -165,11 +190,12 @@ class CartPage221(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r2_occur is False:
+            participant = player.participant
             if (player.product == 'product2') and (player.round_number == 2):
-                if C.r2_page == 1:
+                if participant.r2_page == 1:
                     return player.round_number == 2
             elif (player.product == 'product3') and (player.round_number == 2):
-                if C.r2_page == 4:
+                if participant.r2_page == 4:
                     return player.round_number == 2
             else:
                 return 0
@@ -183,11 +209,12 @@ class CartPage222(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r2_occur is False:
+            participant = player.participant
             if (player.product == 'product2') and (player.round_number == 2):
-                if (C.r2_page == 1) or (C.r2_page == 3):
+                if (participant.r2_page == 1) or (participant.r2_page == 3):
                     return player.round_number == 2
             elif (player.product == 'product3') and (player.round_number == 2):
-                if C.r2_page == 2:
+                if participant.r2_page == 2:
                     return player.round_number == 2
             else:
                 return 0
@@ -201,11 +228,12 @@ class CartPage231(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r2_occur is False:
+            participant = player.participant
             if (player.product == 'product3') and (player.round_number == 2):
-                if C.r2_page == 1:
+                if participant.r2_page == 1:
                     return player.round_number == 2
             elif (player.product == 'product2') and (player.round_number == 2):
-                if C.r2_page == 4:
+                if participant.r2_page == 4:
                     return player.round_number == 2
             else:
                 return 0
@@ -219,11 +247,12 @@ class CartPage232(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r2_occur is False:
+            participant = player.participant
             if (player.product == 'product3') and (player.round_number == 2):
-                if C.r2_page == 3:
+                if participant.r2_page == 3:
                     return player.round_number == 2
             elif (player.product == 'product2') and (player.round_number == 2):
-                if C.r2_page == 2:
+                if participant.r2_page == 2:
                     return player.round_number == 2
             else:
                 return 0
@@ -252,11 +281,12 @@ class CartPage321(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r3_occur is False:
+            participant = player.participant
             if (player.product == 'product2') and (player.round_number == 3):
-                if C.r3_page == 1:
+                if participant.r3_page == 1:
                     return player.round_number == 3
             elif (player.product == 'product3') and (player.round_number == 3):
-                if C.r3_page == 4:
+                if participant.r3_page == 4:
                     return player.round_number == 3
             else:
                 return 0
@@ -270,11 +300,12 @@ class CartPage322(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r3_occur is False:
+            participant = player.participant
             if (player.product == 'product2') and (player.round_number == 3):
-                if (C.r3_page == 1) or (C.r3_page == 3):
+                if (participant.r3_page == 1) or (participant.r3_page == 3):
                     return player.round_number == 3
             elif (player.product == 'product3') and (player.round_number == 3):
-                if (C.r3_page == 2) or (C.r3_page == 4):
+                if (participant.r3_page == 2) or (participant.r3_page == 4):
                     return player.round_number == 3
             else:
                 return 0
@@ -288,11 +319,12 @@ class CartPage331(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r3_occur is False:
+            participant = player.participant
             if (player.product == 'product3') and (player.round_number == 3):
-                if C.r3_page == 3:
+                if participant.r3_page == 3:
                     return player.round_number == 3
             elif (player.product == 'product2') and (player.round_number == 3):
-                if C.r3_page == 4:
+                if participant.r3_page == 4:
                     return player.round_number == 3
             else:
                 return 0
@@ -306,11 +338,12 @@ class CartPage332(Page):
     @staticmethod
     def is_displayed(player: Player):
         if r3_occur is False:
+            participant = player.participant
             if (player.product == 'product3') and (player.round_number == 3):
-                if C.r3_page == 3:
+                if participant.r3_page == 3:
                     return player.round_number == 3
             elif (player.product == 'product2') and (player.round_number == 3):
-                if C.r3_page == 2:
+                if participant.r3_page == 2:
                     return player.round_number == 3
             else:
                 return 0
@@ -326,7 +359,8 @@ class PurchasePage11(Page):
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1 if ((player.round_number == 1) and (C.r1_page == 1)) else 0
+        participant = player.participant
+        return player.round_number == 1 if ((player.round_number == 1) and (participant.r1_page == 1)) else 0
 
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
@@ -341,13 +375,20 @@ class PurchasePage11(Page):
         else:
             player.cash -= 1500
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        player.participant.r1_page = participant.r1_page
 
 class PurchasePage12(Page):
     form_model = 'player'
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1 if ((player.round_number == 1) and (C.r1_page == 2)) else 0
+        participant = player.participant
+        return player.round_number == 1 if ((player.round_number == 1) and (participant.r1_page == 2)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -362,13 +403,20 @@ class PurchasePage12(Page):
         else:
             player.cash -= 1500
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        player.participant.r1_page = participant.r1_page
 
 class PurchasePage13(Page):
     form_model = 'player'
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1 if ((player.round_number == 1) and (C.r1_page == 3)) else 0
+        participant = player.participant
+        return player.round_number == 1 if ((player.round_number == 1) and (participant.r1_page == 3)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -383,13 +431,21 @@ class PurchasePage13(Page):
         else:
             player.cash -= 1162
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        player.participant.r1_page = participant.r1_page
+
 
 class PurchasePage14(Page):
     form_model = 'player'
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 1 if ((player.round_number == 1) and (C.r1_page == 4)) else 0
+        participant = player.participant
+        return player.round_number == 1 if ((player.round_number == 1) and (participant.r1_page == 4)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -404,6 +460,12 @@ class PurchasePage14(Page):
         else:
             player.cash -= 1162
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        player.participant.r1_page = participant.r1_page
 
 # PurchasePages for Round 2
 class PurchasePage21(Page):
@@ -411,7 +473,8 @@ class PurchasePage21(Page):
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 2  if ((player.round_number == 2) and (C.r2_page == 1)) else 0
+        participant = player.participant
+        return player.round_number == 2  if ((player.round_number == 2) and (participant.r2_page == 1)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -426,6 +489,7 @@ class PurchasePage21(Page):
         else:
             player.cash -= 211
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -440,7 +504,8 @@ class PurchasePage22(Page):
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 2  if ((player.round_number == 2) and (C.r2_page == 2)) else 0
+        participant = player.participant
+        return player.round_number == 2  if ((player.round_number == 2) and (participant.r2_page == 2)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -455,6 +520,7 @@ class PurchasePage22(Page):
         else:
             player.cash -= 211
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -468,7 +534,8 @@ class PurchasePage23(Page):
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 2  if ((player.round_number == 2) and (C.r2_page == 3)) else 0
+        participant = player.participant
+        return player.round_number == 2  if ((player.round_number == 2) and (participant.r2_page == 3)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -483,6 +550,7 @@ class PurchasePage23(Page):
         else:
             player.cash -= 188
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -496,7 +564,8 @@ class PurchasePage24(Page):
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 2  if ((player.round_number == 2) and (C.r2_page == 4)) else 0
+        participant = player.participant
+        return player.round_number == 2  if ((player.round_number == 2) and (participant.r2_page == 4)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -511,6 +580,7 @@ class PurchasePage24(Page):
         else:
             player.cash -= 188
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -525,7 +595,8 @@ class PurchasePage31(Page):
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 3  if ((player.round_number == 3) and (C.r3_page == 1)) else 0
+        participant = player.participant
+        return player.round_number == 3  if ((player.round_number == 3) and (participant.r3_page == 1)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -540,6 +611,7 @@ class PurchasePage31(Page):
         else:
             player.cash -= 625
         participant.cash = player.cash
+        player.permutation = player.participant.vars['permutation']
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -553,7 +625,8 @@ class PurchasePage32(Page):
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 3  if ((player.round_number == 3) and (C.r3_page == 2)) else 0
+        participant = player.participant
+        return player.round_number == 3  if ((player.round_number == 3) and (participant.r3_page == 2)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -575,13 +648,15 @@ class PurchasePage32(Page):
         player.gender = player.participant.vars['gender']
         player.age = player.participant.vars['age']
         player.cash = player.participant.vars['cash']
+        player.permutation = player.participant.vars['permutation']
 
 class PurchasePage33(Page):
     form_model = 'player'
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 3  if ((player.round_number == 3) and (C.r3_page == 3)) else 0
+        participant = player.participant
+        return player.round_number == 3  if ((player.round_number == 3) and (participant.r3_page == 3)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):
@@ -603,13 +678,15 @@ class PurchasePage33(Page):
         player.gender = player.participant.vars['gender']
         player.age = player.participant.vars['age']
         player.cash = player.participant.vars['cash']
+        player.permutation = player.participant.vars['permutation']
 
 class PurchasePage34(Page):
     form_model = 'player'
     form_fields = ['product']
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == 3  if ((player.round_number == 3) and (C.r3_page == 4)) else 0
+        participant = player.participant
+        return player.round_number == 3  if ((player.round_number == 3) and (participant.r3_page == 4)) else 0
 
     @staticmethod
     def before_next_page(player, timeout_happened):

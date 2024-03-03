@@ -24,7 +24,7 @@ SESSION_CONFIGS = [
 ]
 DEBUG = False
 SESSION_FIELDS = ['num_rounds']
-PARTICIPANT_FIELDS = ['name', 'age', 'gender', 'cash', 'product', 'permutation']
+PARTICIPANT_FIELDS = ['name', 'age', 'gender', 'cash', 'product', 'permutation', 'r1_page', 'r2_page', 'r3_page']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
