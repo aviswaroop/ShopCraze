@@ -1,4 +1,6 @@
-![ShopCraze](https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/Shopcraze.png)
+<div align="center">
+[![ShopCraze](https://raw.githubusercontent.com/aviswaroop/ShopCraze/main/_static/images/Shopcraze.png)](#readme)
+</div>
 
 # ShopCraze
 ShopCraze is an e-commerce website that was built for a behavioural economics experiment.
